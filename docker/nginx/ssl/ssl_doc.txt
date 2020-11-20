@@ -10,3 +10,5 @@ pass phrase: 先程の
 sudo openssl rsa -in metabase-nginx.key -out metabase-nginx.nopass.key
 rm -rf metabase-nginx.key
 mv metabase-nginx.nopass.key metabase-nginx.nopass.key
+
+署名書をちゃんと発行したいなら→https://letsencrypt.org/ja/
