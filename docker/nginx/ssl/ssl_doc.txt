@@ -1,0 +1,12 @@
+openssl genrsa -aes128 2048 > metabase-nginx.key
+pass phrase: 自由入力
+
+openssl req -new -key metabase-nginx.key > metabase-nginx.csr
+pass phrase: 先程の
+
+openssl x509 -in metabase-nginx.csr -days 365000 -req -signkey metabase-nginx.key > metabase-nginx.crt
+pass phrase: 先程の
+
+sudo openssl rsa -in metabase-nginx.key -out metabase-nginx.nopass.key
+rm -rf metabase-nginx.key
+mv metabase-nginx.nopass.key metabase-nginx.nopass.key

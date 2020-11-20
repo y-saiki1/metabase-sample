@@ -1,0 +1,20 @@
+# 確認用docker-compose.yml
+version: "3.8"
+services: 
+  metabase:
+    build:
+      context: .
+      dockerfile: ./docker/metabase/DockerFile
+    volumes: 
+      - ./docker/metabase:/metabase.db
+  
+  nginx:
+    build:
+      context: .
+      dockerfile: ./docker/nginx/DockerFile
+    volumes:
+      - ./docker/nginx/ssl:/etc/pki/tls/certs 
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - 16001:443
+      - 16002:80
