@@ -18,3 +18,19 @@ services:
     ports:
       - 16001:443
       - 16002:80
+
+  db:
+    build: 
+      context: .
+      dockerfile: ./docker/mysql/Dockerfile
+    volumes:
+      - db-store:/var/lib/mysql
+      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+    environment:
+      - MYSQL_DATABASE=test
+      - MYSQL_ROOT_PASSWORD=test
+    ports:
+      - 16003:3306
+
+volumes:
+  db-store:
